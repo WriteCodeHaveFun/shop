@@ -5,9 +5,12 @@ import fetchData from './SearchResults';
 export default function SearchField() {
     const [curQ, setCurQ] = useState('');
     const [curData, setCurData] = useState([]);
+    const [isFetching, setIsFetching] = useState(false);
     
     async function getData() {
+        setIsFetching(true);
         const data = await fetchData(curQ);
+        setIsFetching(false);
         setCurData(data);
     }
     return(
@@ -23,15 +26,20 @@ export default function SearchField() {
             >
             </button>
             <p>results: </p>
-            {curData.length == 0 ? (
-                <p>no match found</p>
+            {isFetching ? (
+                <p>Loading...</p>
             ) : (
-                <ul>
-                    {curData.map((elem, i) => (
-                        <li key={i}>{elem.name}</li>
-                    ))}
-                </ul>
+                curData.length === 0 ? (
+                    <p>No match found</p>
+                ) : (
+                    <ul>
+                        {curData.map((elem, i) => (
+                            <li key={i}>{elem.name}</li>
+                        ))}
+                    </ul>
+                )
             )}
+
         </>
     )
 }
