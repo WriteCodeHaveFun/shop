@@ -24,6 +24,7 @@ export default function SearchField() {
                 style={{width: '10px', height: '10px', backgroundColor: 'black'}} 
                 onClick={getData}
             >
+                &nbsp;
             </button>
             <p>results: </p>
             {isFetching ? (
