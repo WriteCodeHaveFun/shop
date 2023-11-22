@@ -1,11 +1,30 @@
+// 'use server'
+'use client'
+import { redirect } from 'next/navigation';
 import Image from 'next/image'
-import TestShop from './components/testShop'
+// import TestShop from './components/testShop'
 // import TestShopSecond from './items/testShopSecond'
+import { getServerSession } from 'next-auth';
+import GithubProvider from "next-auth/providers/github"
+// import { signIn, signOut } from "next-auth/react"
+import LogIn from './components/LogIn'
+// import ServerLogIn from './components/ServerLogIn'
 
-export default function Home() {
+export default async function Home() {
+  // const session = await getServerSession({
+  //   providers: [
+  //       GithubProvider({
+  //         clientId: process.env.GITHUB_ID,
+  //         clientSecret: process.env.GITHUB_SECRET,
+  //       }),
+  //     ],
+  // })
+  // if (!session) redirect('/items'); 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       {/* <TestShopSecond></TestShopSecond> */}
+      <LogIn></LogIn>
+      {/* <ServerLogIn></ServerLogIn> */}
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
         <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
           Get started by editing&nbsp;
