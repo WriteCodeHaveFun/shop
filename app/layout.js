@@ -2,9 +2,9 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { SessionProvider } from "next-auth/react"
-import MainNav from './components/MainNav'
-import SearchField from './components/SearchField'
-import LogIn from './components/LogIn'
+import MainNav from '../components/MainNav'
+import SearchField from '../components/SearchField'
+import LogIn from '../components/LogIn'
 
 const inter = Inter({ subsets: ['latin'] })
 

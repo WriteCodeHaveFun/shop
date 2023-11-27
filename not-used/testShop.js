@@ -1,4 +1,4 @@
-// THIS VERSION IS WORSE, because I had to comment 8th line of code: await client.close()
+// THIS VERSION IS WORSE, because I had to comment next line of code: await client.close()
 // read more about it in comment to testShopSecond.js
 // Excluding this line of code and so omiting closing of DB connection is acceptable approach for solving this problem
 import connectToDatabase from '../lib/dbConnect';
