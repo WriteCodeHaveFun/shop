@@ -1,11 +1,9 @@
-import ItemsList from './Items'
-import SearchField from '../components/SearchField';
-
 export default function Items() {
     return(
         <>
-            <ItemsList></ItemsList>
-            <SearchField></SearchField>
+            <main className="flex min-h-screen flex-col items-center justify-between p-24">
+                <h1>This is Items page</h1>
+            </main>
         </>
     )
 }
