@@ -1,6 +1,6 @@
 'use client';
 import { useState } from "react";
-import fetchData from '../lib/FetchData';
+import fetchData from '../lib/fetchData';
 // import { redirect } from "next/dist/server/api-utils";
 // import { useRouter } from "next/navigation";
 
