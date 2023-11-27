@@ -1,14 +1,13 @@
 'use client';
 import { useState } from "react";
 import fetchData from '../lib/fetchData';
-// import { redirect } from "next/dist/server/api-utils";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function SearchField() {
     const [curQ, setCurQ] = useState('');
     const [curData, setCurData] = useState([]);
     const [isFetching, setIsFetching] = useState(false);
-    // const router = useRouter();
+    const router = useRouter();
     
     async function getData() {
         setIsFetching(true);
@@ -17,7 +16,7 @@ export default function SearchField() {
         setCurData(data);
         console.log(`cur data: `);
         console.log(data); // temp
-        // router.push(`/items?search=q`)
+        router.push(`/items?search=${curQ}`)
     }
     return(
         <>
