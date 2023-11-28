@@ -5,6 +5,8 @@ import { SessionProvider } from "next-auth/react"
 import MainNav from '../components/MainNav'
 import SearchField from '../components/SearchField'
 import LogIn from '../components/LogIn'
+import AddToCart from '@/components/AddToCart'
+import RemoveFromCart from '../components/RemoveFromCart'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,6 +24,8 @@ export default function RootLayout({ children }) {
           <SearchField></SearchField>
           <LogIn></LogIn>
           {children}
+          <AddToCart itemId={'itemId'} number={2}></AddToCart>
+          <RemoveFromCart itemId={'itemId'} number={2}></RemoveFromCart>
         </body>
       </html>
     </SessionProvider> 
