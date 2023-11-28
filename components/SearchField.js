@@ -1,29 +1,46 @@
 'use client';
 import { useState } from "react";
-import fetchData from '../lib/fetchData';
+// import fetchData from '../lib/fetchData';
 import { useRouter } from "next/navigation";
 
 export default function SearchField() {
     const [curQ, setCurQ] = useState('');
-    const [curData, setCurData] = useState([]);
-    const [isFetching, setIsFetching] = useState(false);
+    // const [curData, setCurData] = useState([]);
+    // const [isFetching, setIsFetching] = useState(false);
     const router = useRouter();
     
-    async function getData() {
-        setIsFetching(true);
-        const data = await fetchData(curQ);
-        setIsFetching(false);
-        setCurData(data);
-        console.log(`cur data: `);
-        console.log(data); // temp
-        router.push(`/items?search=${curQ}`)
-    }
+    // async function getData() {
+    //     setIsFetching(true);
+    //     const data = await fetchData(curQ);
+    //     setIsFetching(false);
+    //     setCurData(data);
+    //     console.log(`cur data: `);
+    //     console.log(data); // temp
+    //     router.push(`/items?search=${curQ}`)
+    // }
 
     function handleEnterKeyUp(e) {
         if (e.key === 'Enter') {
+            if (!e.target.value) {
+                console.log('empty search q')
+                return false;
+            }
             e.target.blur();
-            getData();
+            // getData();
+            router.push(`/items?search=${curQ}`)
+
         }
+    }
+
+    function handleSearchClick(e) {
+        if (e.target.value = '') {
+            console.log('empty search q')
+            return false;
+        }
+        e.target.blur();
+        // getData();
+        router.push(`/items?search=${curQ}`)
+
     }
     return(
         <>
@@ -37,7 +54,7 @@ export default function SearchField() {
                 </input>
                 <button 
                     style={{width: '10px', height: '10px', backgroundColor: 'black'}} 
-                    onClick={getData}
+                    onClick={handleSearchClick}
                 >
                     &nbsp;
                 </button>

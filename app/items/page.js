@@ -1,20 +1,37 @@
 'use client'
+import fetchData from '@/lib/fetchData';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function Items() {
-    // return(
-    //     <>
-    //         <main className="flex min-h-screen flex-col items-center justify-between p-24">
-    //             <h1>This is Items page</h1>
-    //         </main>
-    //     </>
-    // )
     const searchParams = useSearchParams();
-    const router = useRouter();
     const curPath = usePathname();
+
+    const [curData, setCurData] = useState([]);
+    const [isFetching, setIsFetching] = useState(false);
+
     const q = searchParams.get('search');
+
+    useEffect(() => {
+        async function getData() {
+            setIsFetching(true);
+            const result = await fetchData(q);
+            setIsFetching(false);
+            return result;
+        }
+    
+        async function fetchD() {
+            setIsFetching(true);
+            const result = await getData();
+            setIsFetching(false);
+            console.log('Items data: ')
+            console.log(result)
+            setCurData(result);
+          }
+        
+          fetchD();
+    }, [q]);
 
     if (searchParams.get('search')) {
         // Получить все соответствия some_search из базы данных mongodb
@@ -27,8 +44,15 @@ export default function Items() {
                     onClick={() => router.push(`/items/${q}`)}
                     value='button'
                 ></button> */}
+                { isFetching ? (
+                    <p>Loading...</p>
+                ) : (
+                    <>
+                        <p>Loaded! Number of items: {curData.length}</p>
+                    </>
+                    
+                )}
                 <Link href={`${curPath}/${q}`}>go to: {q}</Link>
-                <p>router query: {router.query}</p>
             </>
         )
     }
@@ -36,7 +60,6 @@ export default function Items() {
     return (
         <>
             <h1>Стандартная страница items</h1>
-            <p>router query: {router.query}</p>
         </>
     )
 }
