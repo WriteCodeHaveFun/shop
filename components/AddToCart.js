@@ -1,7 +1,14 @@
 'use client';
 
 export default function AddToCart({itemId, number}) {
-    const addValueTOLocalStorage = () => localStorage.setItem(itemId, number)
+    const addValueTOLocalStorage = () => {
+        const curItemIdInfo = localStorage.getItem(itemId)
+        if (curItemIdInfo) {
+            localStorage.setItem(itemId, Number(curItemIdInfo) + number)
+        } else {
+            localStorage.setItem(itemId, number)
+        }
+    }
     return(
         <>
             <div className="my-4">

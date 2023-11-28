@@ -18,12 +18,21 @@ export default function SearchField() {
         console.log(data); // temp
         router.push(`/items?search=${curQ}`)
     }
+
+    function handleEnterKeyUp(e) {
+        if (e.key === 'Enter') {
+            e.target.blur();
+            getData();
+        }
+    }
     return(
         <>
             <div className="my-4">
                 <input
+                    type="search"
                     placeholder="Search..."
                     onChange={(e) => setCurQ(e.target.value)}
+                    onKeyUp={handleEnterKeyUp}
                 >
                 </input>
                 <button 
