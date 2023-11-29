@@ -1,18 +1,24 @@
 'use client';
 
-export default function AddToCart({itemId, number}) {
+export default function AddToCart({itemId, number, fullData}) {
     const addValueTOLocalStorage = () => {
-        const curItemIdInfo = localStorage.getItem(itemId)
+        const curItemIdInfo = localStorage.getItem('cart');
+
         if (curItemIdInfo) {
-            localStorage.setItem(itemId, Number(curItemIdInfo) + number)
+            const obj = JSON.parse(curItemIdInfo);
+            obj.number = obj.number + number;
+            localStorage.setItem('cart', JSON.stringify(obj))
         } else {
-            localStorage.setItem(itemId, number)
+            const infoObj = {
+                number: number,
+                data: fullData
+            };
+            localStorage.setItem('cart', JSON.stringify(infoObj))
         }
     }
     return(
         <>
             <div className="my-4">
-                <p>item id: {itemId}</p>
                 <p>number of items: {number}</p>
                 <button
                     onClick={() => addValueTOLocalStorage()}

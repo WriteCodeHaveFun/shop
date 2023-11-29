@@ -22,24 +22,26 @@ export default function SearchField() {
     function handleEnterKeyUp(e) {
         if (e.key === 'Enter') {
             if (!e.target.value) {
-                console.log('empty search q')
-                return false;
+                e.target.blur();
+                router.push(`/items`)
+            } else {
+                e.target.blur();
+                router.push(`/items?search=${curQ}`)
             }
-            e.target.blur();
-            // getData();
-            router.push(`/items?search=${curQ}`)
 
         }
     }
 
     function handleSearchClick(e) {
-        if (e.target.value = '') {
-            console.log('empty search q')
-            return false;
+        const isEmptySearch = e.target.closest(`div`).querySelector(`input[type=search]`).value === '';
+        
+        if (isEmptySearch) {
+            e.target.blur();
+            router.push(`/items`)
+        } else {
+            e.target.blur();
+            router.push(`/items?search=${curQ}`)
         }
-        e.target.blur();
-        // getData();
-        router.push(`/items?search=${curQ}`)
 
     }
     return(
@@ -48,6 +50,7 @@ export default function SearchField() {
                 <input
                     type="search"
                     placeholder="Search..."
+                    name="main search field"
                     onChange={(e) => setCurQ(e.target.value)}
                     onKeyUp={handleEnterKeyUp}
                 >
