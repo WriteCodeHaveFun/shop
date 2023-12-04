@@ -22,18 +22,22 @@ export default function Items() {
             ) : (
                 await fetchData('')
             );
-            return result;
-        }
-    
-        async function fetchD() {
-            const result = await getData();
+            // return result;
             setIsFetching(false);
-            // console.log('Items data: ')
-            // console.log(result)
             setCurData(result);
-          }
+            
+        }
+        getData();
+    
+        // async function fetchD() {
+        //     const result = await getData();
+        //     setIsFetching(false);
+        //     // console.log('Items data: ')
+        //     // console.log(result)
+        //     setCurData(result);
+        //   }
         
-          fetchD();
+        //   fetchD();
     }, [q]);
 
     return (

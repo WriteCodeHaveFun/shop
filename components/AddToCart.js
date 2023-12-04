@@ -1,5 +1,9 @@
 'use client';
 
+// this functionality needs modification. 
+// Now if want to add another item to cart, 
+// i'll just add number of it to number of previosly bought item
+
 export default function AddToCart({itemId, number, fullData}) {
     const addValueTOLocalStorage = () => {
         const curItemIdInfo = localStorage.getItem('cart');

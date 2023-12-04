@@ -19,17 +19,22 @@ export default function Item() {
       ) : (
           await fetchData('')
       );
-      return result;
-    }
-
-    async function fetchD() {
-      const result = await getData();
       setIsFetching(false);
       setCurItemData(result);
+      // return result;
     }
+    getData();
+
+
+    // async function fetchD() {
+    //   const result = await getData();
+    //   setIsFetching(false);
+    //   setCurItemData(result);
+    // }
     
-    fetchD();
+    // fetchD();
   }, [itemId]);
+
   const itemInfo = curItemData.map((item, i) => (
     <div  key={`${item}${i}`}>
       <p>Name: {item.itemName}</p>
