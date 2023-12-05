@@ -2,6 +2,8 @@
 import { useState } from "react";
 // import fetchData from '../lib/fetchData';
 import { useRouter } from "next/navigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 export default function SearchField() {
     const [curQ, setCurQ] = useState('');
@@ -47,8 +49,17 @@ export default function SearchField() {
     return(
         <>
             <div className="my-4 mx-4 md:m-auto flex md:w-3/4 lg:w-1/2">
+                {/* <FontAwesomeIcon 
+                    style={{
+                        height: '45px', 
+                        position: 'absolute', 
+                        margin: '6px 0 0 7px', 
+                        pointerEvents: 'none'
+                    }}
+                    icon={faMagnifyingGlass} 
+                /> */}
                 <input
-                    className="grow min-w-0 px-4 rounded border border-[#efefef]"
+                    className="grow min-w-0 px-4 [@media(min-width:320px)]:pl-[60px] font-bold sm:text-5xl text-[1.5rem] rounded border border-[#efefef]"
                     type="search"
                     placeholder="Search..."
                     name="main search field"
@@ -57,7 +68,7 @@ export default function SearchField() {
                 >
                 </input>
                 <button 
-                    className="ml-4 py-[14px] px-[2px] block border border-[#efefef] rounded box-border font-semibold capitalize"
+                    className="ml-4 py-[14px] px-[2px] block border border-[#efefef] rounded box-border font-black sm:text-5xl text-[1.5rem] capitalize"
                     onClick={handleSearchClick}
                 >
                     find

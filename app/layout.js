@@ -21,8 +21,10 @@ export default function RootLayout({ children }) {
         <body className={inter.className}>
           <MainNav></MainNav>
           <SearchField></SearchField>
-          <LogIn></LogIn>
-          <Cart></Cart>
+          <div className='md:flex md:my-4'>
+            <LogIn></LogIn>
+            <Cart></Cart>
+          </div>
           {children}
         </body>
       </html>

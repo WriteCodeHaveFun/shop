@@ -1,5 +1,7 @@
 'use client'
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react"
 
 export default function Cart() {
@@ -33,10 +35,14 @@ export default function Cart() {
                 <button onClick={handleCloseClick}>Close</button>
             </dialog>
             <button 
-                className="h-[100px] w-[100px] border"
+                
+                className="h-[100px] w-[200px] flex items-center md:ml-0 ml-auto sm:mr-4 mr-0 px-4 box-border rounded border border-[#efefef] bg-white font-black text-3xl"
                 onClick={handleToggleClick}
             >
-                Open/Close
+                {/* <FontAwesomeIcon icon="fa-solid fa-cart-shopping" />
+                <FontAwesomeIcon icon={solid("cart-shopping")} /> */}
+                <FontAwesomeIcon style={{height: '70px'}} icon={faCartShopping} />
+                My cart
             </button>
         </>
     )
