@@ -10,7 +10,7 @@ export default function MainNav() {
     return(
         <>
             <nav className="overflow-x-hidden flex justify-end md:justify-around h-[68px]">
-                <ul className={`absolute md:static md:flex md:justify-between w-[50vw] md:w-3/4 backdrop-blur md:backdrop-blur-none 
+                <ul className={`fixed md:static md:flex md:justify-between w-[50vw] md:w-3/4 backdrop-blur md:backdrop-blur-none 
                                 transition-transform md:transition-none duration-300 lg:w-1/2 my-4 capitalize font-bold text-3xl 
                                 ${mobileTranslateCssValue} md:translate-x-0`}>
                     <li key='main'>

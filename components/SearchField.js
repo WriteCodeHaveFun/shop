@@ -46,8 +46,9 @@ export default function SearchField() {
     }
     return(
         <>
-            <div className="my-4">
+            <div className="my-4 mx-4 md:m-auto flex md:w-3/4 lg:w-1/2">
                 <input
+                    className="grow min-w-0 px-4 rounded border border-[#efefef]"
                     type="search"
                     placeholder="Search..."
                     name="main search field"
@@ -56,10 +57,10 @@ export default function SearchField() {
                 >
                 </input>
                 <button 
-                    style={{width: '10px', height: '10px', backgroundColor: 'black'}} 
+                    className="ml-4 py-[14px] px-[2px] block border border-[#efefef] rounded box-border font-semibold capitalize"
                     onClick={handleSearchClick}
                 >
-                    &nbsp;
+                    find
                 </button>
             </div>
         </>
