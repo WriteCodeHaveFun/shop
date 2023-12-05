@@ -6,14 +6,17 @@ export default function Cart() {
     const [isOpen, setIsOpen] = useState(false);
     const cartData = JSON.parse(localStorage.getItem('cart'));
 
-    const numberOfItems = cartData.number;
-    const cart = cartData.data.map(item =>(
-        <li key={item.itemId}>
-            <p>Item name: {item.itemName}</p>
-            <p>Item info: {item.itemInfo}</p>
-            <p>number of items: {numberOfItems}</p>
-        </li>
-    ));
+    // const numberOfItems = cartData.number;
+    let cart = [];
+    if (cartData) {
+        cart = cartData.data.map(item => (
+            <li key={item.itemId}>
+                <p>Item name: {item.itemName}</p>
+                {/* <p>Item info: {item.itemInfo}</p> */}
+                <p>number of items: {cartData[item.itemId]}</p>
+            </li>
+        ));
+    }
 
     function handleToggleClick() {
         setIsOpen(!isOpen);

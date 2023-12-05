@@ -48,9 +48,11 @@ export default function Item() {
         {isFetching ? (
           <p>Loading...</p>
           ) : (
-          itemInfo
+          <>
+            {itemInfo}
+            <AddToCart itemId={itemId} number={2} fullData={curItemData}></AddToCart>
+          </>
         )}
-        <AddToCart itemId={itemId} number={2} fullData={curItemData}></AddToCart>
         {/* <RemoveFromCart itemId={itemId} number={2}></RemoveFromCart> */}
       </div>
     </>
