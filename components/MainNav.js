@@ -9,7 +9,7 @@ export default function MainNav() {
     const mobileMenuStatusSpanCss = isMobileMenuClosed ? '' : `first:translate-y-[23px] first:rotate-45 -rotate-45 last:translate-y-[-23px]`
     return(
         <>
-            <nav className="overflow-x-hidden flex justify-end md:justify-end h-[68px]">
+            <nav className="overflow-x-hidden flex justify-end md:justify-end h-[68px] md:mr-4">
                 <ul className={`fixed md:static md:flex md:justify-between w-[50vw] md:w-3/4 backdrop-blur md:backdrop-blur-none 
                                 transition-transform md:transition-none duration-300 lg:w-1/2 my-4 capitalize font-bold text-3xl 
                                 ${mobileTranslateCssValue} md:translate-x-0`}>
