@@ -48,7 +48,7 @@ export default function SearchField() {
     }
     return(
         <>
-            <div className="my-4 mx-4 md:m-auto flex md:w-3/4 lg:w-1/2">
+            <div className="m-4 md:m-auto flex md:w-[85%]">
                 {/* <FontAwesomeIcon 
                     style={{
                         height: '45px', 
