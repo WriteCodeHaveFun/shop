@@ -31,10 +31,10 @@ export default function ShowItems({itemsData}) {
         return (
             <li
                 key={item.itemId}
-                className="md:w-[calc(50%-0.5rem)] md:my-0 my-4 grow"
+                className="md:w-[calc(50%-0.5rem)] md:my-0 my-4 grow relative"
             >
-                <div className="flex flex-wrap h-full">
-                    <div className="">
+                <div className="h-full">
+                    <div className="md:h-96 h-84">
                         <Link
                             className="block h-full"
                             href={`/items/${item.itemId}`}
@@ -58,6 +58,7 @@ export default function ShowItems({itemsData}) {
                         <p>{item.itemShortInfo}</p>
                         <br></br>
                         <Link
+                            className="absolute bottom-0"
                             href={`/items/${item.itemId}`}
                         >
                             More info
@@ -77,7 +78,7 @@ export default function ShowItems({itemsData}) {
     
     return(
         <>
-            <ul className="max-w-[1440px] mx-auto my-4 md:flex flex-wrap gap-4">
+            <ul className="max-w-[1440px] mx-auto my-4 md:flex flex-wrap gap-4 md:p-4">
                 {/* <FilteredList list={list}></FilteredList> */}
                 {list}
             </ul>
