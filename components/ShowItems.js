@@ -1,4 +1,5 @@
 'use client';
+import Image from "next/image";
 import Link from "next/link"
 import { useState } from "react";
 
@@ -17,20 +18,52 @@ export default function ShowItems({itemsData}) {
         if (i === 0) minPrice = Number(item.itemPrice);
         if (Number(item.itemPrice) > maxPrice) maxPrice = Number(item.itemPrice);
         if (Number(item.itemPrice) < minPrice) minPrice = Number(item.itemPrice);
+        let imgName = '';
+        if (item.itemName.toLowerCase().includes('iphone')) {
+            imgName='items-iphone';
+        }
+        if (item.itemName.toLowerCase().includes('macbook')) {
+            imgName='items-macbook';
+        }
+        if (item.itemName.toLowerCase().includes('samsung')) {
+            imgName='items-samsung';
+        }
         return (
             <li
                 key={item.itemId}
-                className="w-[calc(50%-0.5rem)]"
+                className="md:w-[calc(50%-0.5rem)] md:my-0 my-4 grow"
             >
-                <p>Name: {item.itemName}</p>
-                <p>Price: {item.itemPrice}$</p>
-                <p>Info: {item.itemShortInfo}</p>
-                <Link
-                    href={`/items/${item.itemId}`}
-                    // as={`/items/${item.itemId}?data=someData`}
-                >
-                    More info
-                </Link>
+                <div className="flex flex-wrap h-full">
+                    <div className="">
+                        <Link
+                            className="block h-full"
+                            href={`/items/${item.itemId}`}
+                        >
+                            <div className="bg-[#9ca3af] w-full h-full">
+                                <Image
+                                    className="h-full object-cover"
+                                    src={`/src/${imgName}.jpg`}
+                                    alt={imgName}
+                                    width={2000}
+                                    height={2000}
+                                >
+                                </Image>
+                            </div>
+                        </Link>
+                    </div>
+                    <div className="w-full">
+                        <p className="text-center">{item.itemName}</p>
+                        <p className="text-center">{item.itemPrice}$</p>
+                        <br></br>
+                        <p>{item.itemShortInfo}</p>
+                        <br></br>
+                        <Link
+                            href={`/items/${item.itemId}`}
+                        >
+                            More info
+                        </Link>
+                    </div>
+                </div>
             </li>
         );
     })
@@ -44,7 +77,7 @@ export default function ShowItems({itemsData}) {
     
     return(
         <>
-            <ul className="my-4 flex flex-wrap gap-4">
+            <ul className="max-w-[1440px] mx-auto my-4 md:flex flex-wrap gap-4">
                 {/* <FilteredList list={list}></FilteredList> */}
                 {list}
             </ul>
