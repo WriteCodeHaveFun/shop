@@ -29,7 +29,7 @@ export default function Cart() {
     }
     return(
         <>
-            <dialog open={isOpen}>
+            <dialog className="fixed top-0 left-0 z-[100] w-full h-full opacity-95" open={isOpen}>
                 <p>This is your cart</p>
                 {cart}
                 <button onClick={handleCloseClick}>Close</button>

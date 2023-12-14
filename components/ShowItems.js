@@ -31,7 +31,7 @@ export default function ShowItems({itemsData}) {
         return (
             <li
                 key={item.itemId}
-                className="md:w-[calc(50%-0.5rem)] md:my-0 my-4 grow relative"
+                className="md:w-[calc(50%-0.5rem)] md:my-0 my-4 grow relative pb-4 mb-4"
             >
                 <div className="h-full">
                     <div className="md:h-96 h-84">
@@ -55,14 +55,16 @@ export default function ShowItems({itemsData}) {
                         <p className="text-center">{item.itemName}</p>
                         <p className="text-center">{item.itemPrice}$</p>
                         <br></br>
-                        <p>{item.itemShortInfo}</p>
+                        <p className="h-20">{item.itemShortInfo}</p>
                         <br></br>
-                        <Link
-                            className="absolute bottom-0"
-                            href={`/items/${item.itemId}`}
-                        >
-                            More info
-                        </Link>
+                        <div className="">
+                            <Link
+                                className="inline-block bottom-0 rounded p-4 bg-black text-white font-black text-xl"
+                                href={`/items/${item.itemId}`}
+                            >
+                                More info
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </li>
