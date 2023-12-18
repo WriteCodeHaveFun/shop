@@ -1,13 +1,22 @@
 'use client';
 
-export default function AddToCart({itemId, number}) {
+export default function RemoveFromCart({itemId, setCartData}) {
+    function handleClick() {
+        let cartData = JSON.parse(localStorage.getItem('cart'));
+        delete cartData[itemId];
+        cartData.data = cartData.data.filter(function(obj) {
+            return obj.itemId !== itemId
+        });
+        localStorage.setItem('cart', JSON.stringify(cartData));
+        setCartData(JSON.parse(localStorage.getItem('cart')));
+    }
     return(
         <>
-            <p>item id: {itemId}</p>
-            <p>number of items: {number}</p>
             <button
-                onClick={() => localStorage.removeItem(itemId)}
-            >remove item from cart</button>
+                onClick={handleClick}
+            >
+                remove item from cart
+            </button>
         </>
     )
 }

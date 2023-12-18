@@ -3,10 +3,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react"
+import RemoveFromCart from "./RemoveFromCart";
 
 export default function Cart() {
     const [isOpen, setIsOpen] = useState(false);
-    const cartData = JSON.parse(localStorage.getItem('cart'));
+    const [cartData, setCartData] = useState(JSON.parse(localStorage.getItem('cart')));
 
     // const numberOfItems = cartData.number;
     let cart = [];
@@ -16,12 +17,17 @@ export default function Cart() {
                 <p>Item name: {item.itemName}</p>
                 {/* <p>Item info: {item.itemInfo}</p> */}
                 <p>number of items: {cartData[item.itemId]}</p>
+                <RemoveFromCart
+                    setCartData={setCartData}
+                    itemId={item.itemId} 
+                />
             </li>
         ));
     }
 
     function handleToggleClick() {
         setIsOpen(!isOpen);
+        setCartData(JSON.parse(localStorage.getItem('cart')));
     }
 
     function handleCloseClick() {
