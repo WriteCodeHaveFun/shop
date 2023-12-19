@@ -32,7 +32,7 @@ export default function MainNav() {
                     <li key='about'>
                         <Link
                             className={linkCss}
-                            href="/"
+                            href="/about"
                         >
                             about
                         </Link>
@@ -40,7 +40,7 @@ export default function MainNav() {
                     <li key='contact'>
                         <Link
                             className={linkCss}
-                            href="/"
+                            href="/contact"
                         >
                             contact
                         </Link>

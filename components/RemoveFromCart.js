@@ -12,11 +12,13 @@ export default function RemoveFromCart({itemId, setCartData}) {
     }
     return(
         <>
-            <button
-                onClick={handleClick}
-            >
-                remove item from cart
-            </button>
+            <div className="my-4">
+                <button
+                    onClick={handleClick}
+                >
+                    <strong className="">Remove item(s) from cart</strong>
+                </button>
+            </div>
         </>
     )
 }

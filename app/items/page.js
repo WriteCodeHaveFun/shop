@@ -30,7 +30,9 @@ export default function Items() {
     return (
         <>
             { isFetching ? (
-                <p>Loading...</p>
+                <div className='h-full'>
+                    <p className='text-center'>Loading...</p>
+                </div>
             ) : (
                 <>
                     <ShowItems itemsData={curData}></ShowItems>

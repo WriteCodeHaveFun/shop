@@ -6,6 +6,7 @@ import MainNav from '../components/MainNav'
 import SearchField from '../components/SearchField'
 import LogIn from '../components/LogIn'
 import Cart from '@/components/Cart'
+import Footer from '@/components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,7 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <SessionProvider>
       <html lang="en">
-        <body className={inter.className}>
+        <body className={inter.className + ' h-[100vh]'}>
           <MainNav></MainNav>
           <SearchField></SearchField>
           <div className='md:flex md:my-4'>
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
             <Cart></Cart>
           </div>
           {children}
+          <Footer></Footer>
         </body>
       </html>
     </SessionProvider> 

@@ -73,7 +73,9 @@ export default function ShowItems({itemsData}) {
     if (itemsData.length === 0) {
         return (
             <>
-                <h1>No match found</h1>
+                <div className="p-4">
+                    <h1 className="text-center text-5xl font-bold">No match found</h1>
+                </div>
             </>
         )
     }

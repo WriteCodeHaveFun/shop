@@ -44,13 +44,13 @@ export default function Item() {
   ))
   return (
     <>
-      <div className="flex flex-col items-center justify-between p-24">
+      <div className="flex flex-col items-center justify-between p-24 h-full">
         {isFetching ? (
           <p>Loading...</p>
           ) : (
           <>
             {itemInfo}
-            <AddToCart itemId={itemId} number={2} fullData={curItemData}></AddToCart>
+            <AddToCart itemId={itemId} fullData={curItemData}></AddToCart>
           </>
         )}
         {/* <RemoveFromCart itemId={itemId} number={2}></RemoveFromCart> */}
