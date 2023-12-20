@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
@@ -13,7 +13,9 @@ export default function Cart() {
     const { data: session } = useSession()
     const userEmail = session?.user?.email;
     const cartName = userEmail ? userEmail + '\'s-cart' : 'cart';
-    const [cartData, setCartData] = useState(JSON.parse(localStorage.getItem(cartName)));
+    const [cartData, setCartData] = useState(
+        typeof window !== undefined ? JSON.parse(localStorage.getItem(cartName)) : false
+    );
 
     // const numberOfItems = cartData.number;
     let cart = [];
@@ -56,6 +58,7 @@ export default function Cart() {
 
     function handleToggleClick() {
         setIsOpen(!isOpen);
+        if (window === undefined) return;
         setCartData(JSON.parse(localStorage.getItem(cartName)));
     }
 
@@ -65,6 +68,7 @@ export default function Cart() {
 
     function handleBuyAllClick() {
         setIsOpen(false);
+        if (window === undefined) return;
         localStorage.removeItem(cartName);
     }
     return(

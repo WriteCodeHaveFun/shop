@@ -15,7 +15,8 @@ export default function AddToCart({itemId, fullData}) {
 
 
     const addValueTOLocalStorage = () => {
-        const curItemIdInfo = localStorage.getItem(cartName);
+        // localStorage fix
+        const curItemIdInfo = typeof window !== undefined ? localStorage.getItem(cartName) : false;
 
         if (curItemIdInfo) {
             const obj = JSON.parse(curItemIdInfo);
@@ -33,6 +34,9 @@ export default function AddToCart({itemId, fullData}) {
                 [itemId]: number,
                 data: fullData
             };
+
+            // localStorage fix
+            if (typeof window === undefined) return;
             localStorage.setItem(cartName, JSON.stringify(infoObj))
         }
     }
