@@ -42,7 +42,7 @@ export default function Cart() {
                         height={200}
                     >
                     </Image>
-                    <p>Item name: {item.itemName}</p>
+                    <p>Item: {item.itemName}</p>
                     {/* <p>Item info: {item.itemInfo}</p> */}
                     <p>Number of items: {cartData[item.itemId]}</p>
                     <RemoveFromCart

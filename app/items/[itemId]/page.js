@@ -51,22 +51,22 @@ export default function Item() {
     return (
       <div  key={`${item}${i}`}>
         <Image
-            className="object-cover bg-slate-400"
+            className="md:w-[400px] w-[200px] object-cover bg-slate-400 mx-auto"
             src={`/src/${imgName}.jpg`}
             alt={imgName}
-            width={200}
-            height={200}
+            width={400}
+            height={400}
         >
         </Image>
-        <p>Name: {item.itemName}</p>
-        <p>Price: {item.itemPrice}$</p>
-        <p>Info: {item.itemInfo}</p>
+        <p className="mt-4 text-center">{item.itemName}</p>
+        <p className="text-center">{item.itemPrice}$</p>
+        <p className="mt-4">Info: {item.itemInfo}</p>
       </div>
     )
   });
   return (
     <>
-      <div className="flex flex-col items-center justify-between p-24 h-full">
+      <div className="md:flex md:flex-col md:items-center md:justify-between md:p-24 p-4 max-w-[1440px] [@media(min-width:1441px)]:mx-auto"> 
         {isFetching ? (
           <p>Loading...</p>
           ) : (

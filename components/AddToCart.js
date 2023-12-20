@@ -8,9 +8,11 @@ export default function AddToCart({itemId, fullData}) {
     const [numberOfItems, setNumberOfItems] = useState(1);
     const { data: session } = useSession()
     const userEmail = session?.user?.email;
-    const number = numberOfItems;
-
     const cartName = userEmail ? userEmail + '\'s-cart' : 'cart';
+    const number = numberOfItems;
+    const minValue = 0;
+    const maxValue = 10;
+
 
     const addValueTOLocalStorage = () => {
         const curItemIdInfo = localStorage.getItem(cartName);
@@ -47,22 +49,25 @@ export default function AddToCart({itemId, fullData}) {
         }
     }
     function handleChange(value) {
+        if (value > maxValue) value = maxValue;
+        if (Number(value) < minValue) value = Number(minValue);
         setNumberOfItems(Number(value));
     }
     return(
         <>
             <div className="my-4">
-                <p>number of items: 
-                    <input 
+                <p className="text-xl font-bold mr-4">Number of items: <input 
+                        className="text-center rounded border border-[#efefef]"
                         type="number" 
-                        min={1}
-                        max={10}
+                        min={minValue}
+                        max={maxValue}
                         value={numberOfItems}
                         onChange={(e) => handleChange(e.target.value)}
                         placeholder="Number of items">
                     </input>
                 </p>
                 <button
+                    className="p-4 mt-4 bg-white block border border-[#efefef] rounded box-border font-black md:text-3xl text-[1.5rem] capitalize"
                     onClick={handleClick}
                 >
                     {isClickAvailable ? 'add to cart' : 'adding to cart...'}
