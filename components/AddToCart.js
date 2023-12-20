@@ -1,14 +1,19 @@
 'use client';
 
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 export default function AddToCart({itemId, fullData}) {
     const [isClickAvailable, setIsClickAvailable] = useState(true);
     const [numberOfItems, setNumberOfItems] = useState(1);
+    const { data: session } = useSession()
+    const userEmail = session?.user?.email;
     const number = numberOfItems;
 
+    const cartName = userEmail ? userEmail + '\'s-cart' : 'cart';
+
     const addValueTOLocalStorage = () => {
-        const curItemIdInfo = localStorage.getItem('cart');
+        const curItemIdInfo = localStorage.getItem(cartName);
 
         if (curItemIdInfo) {
             const obj = JSON.parse(curItemIdInfo);
@@ -16,17 +21,17 @@ export default function AddToCart({itemId, fullData}) {
             if (!obj.hasOwnProperty(itemId)) {
                 obj[itemId] = number;
                 obj.data.push(fullData[0]);
-                localStorage.setItem('cart', JSON.stringify(obj));
+                localStorage.setItem(cartName, JSON.stringify(obj));
             } else {
                 obj[itemId] = obj[itemId] + number;
-                localStorage.setItem('cart', JSON.stringify(obj));
+                localStorage.setItem(cartName, JSON.stringify(obj));
             }
         } else {
             const infoObj = {
                 [itemId]: number,
                 data: fullData
             };
-            localStorage.setItem('cart', JSON.stringify(infoObj))
+            localStorage.setItem(cartName, JSON.stringify(infoObj))
         }
     }
 

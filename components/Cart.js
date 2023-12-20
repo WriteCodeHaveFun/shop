@@ -6,10 +6,14 @@ import { useState } from "react"
 import RemoveFromCart from "./RemoveFromCart";
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 export default function Cart() {
     const [isOpen, setIsOpen] = useState(false);
-    const [cartData, setCartData] = useState(JSON.parse(localStorage.getItem('cart')));
+    const { data: session } = useSession()
+    const userEmail = session?.user?.email;
+    const cartName = userEmail ? userEmail + '\'s-cart' : 'cart';
+    const [cartData, setCartData] = useState(JSON.parse(localStorage.getItem(cartName)));
 
     // const numberOfItems = cartData.number;
     let cart = [];
@@ -20,13 +24,13 @@ export default function Cart() {
 
             let imgName = '';
             if (item.itemName.toLowerCase().includes('iphone')) {
-                imgName='items-iphone';
+                imgName='itemId-iphone';
             }
             if (item.itemName.toLowerCase().includes('macbook')) {
-                imgName='items-macbook';
+                imgName='itemId-macbook';
             }
             if (item.itemName.toLowerCase().includes('samsung')) {
-                imgName='items-samsung';
+                imgName='itemId-samsung';
             }
             return(
                 <li className="grow h-[230px] [@media(max-width:320px)]:mb-4" key={item.itemId}>
@@ -52,7 +56,7 @@ export default function Cart() {
 
     function handleToggleClick() {
         setIsOpen(!isOpen);
-        setCartData(JSON.parse(localStorage.getItem('cart')));
+        setCartData(JSON.parse(localStorage.getItem(cartName)));
     }
 
     function handleCloseClick() {
@@ -61,14 +65,14 @@ export default function Cart() {
 
     function handleBuyAllClick() {
         setIsOpen(false);
-        localStorage.removeItem('cart');
+        localStorage.removeItem(cartName);
     }
     return(
         <>
             <dialog className="fixed top-0 left-0 z-[100] w-full h-full opacity-100 overflow-auto" open={isOpen}>
                 <div className="max-w-[1440px] mx-auto">
                     {/* <p>This is your cart</p> */}
-                    <ul className="mb-8 [@media(min-width:321px)]:flex [@media(min-width:321px)]:flex-wrap gap-4">
+                    <ul className="mt-4 mb-8 [@media(min-width:321px)]:flex [@media(min-width:321px)]:flex-wrap gap-4">
                         {cart}
                     </ul>
                     <p>Total Price: <strong className="text-3xl">{totalPrice.toFixed(2)}$</strong></p>

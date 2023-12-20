@@ -4,6 +4,7 @@ import AddToCart from '@/components/AddToCart'
 // import RemoveFromCart from '@/components/RemoveFromCart'
 import { useState, useEffect } from "react";
 import fetchData from "@/lib/fetchDataById";
+import Image from "next/image";
 
 export default function Item() {
   const curPath = usePathname();
@@ -35,13 +36,34 @@ export default function Item() {
     // fetchD();
   }, [itemId]);
 
-  const itemInfo = curItemData.map((item, i) => (
-    <div  key={`${item}${i}`}>
-      <p>Name: {item.itemName}</p>
-      <p>Price: {item.itemPrice}$</p>
-      <p>Info: {item.itemInfo}</p>
-    </div>
-  ))
+  
+  const itemInfo = curItemData.map((item, i) => {
+    let imgName = '';
+    if (item.itemName.toLowerCase().includes('iphone')) {
+        imgName='itemId-iphone';
+    }
+    if (item.itemName.toLowerCase().includes('macbook')) {
+        imgName='itemId-macbook';
+    }
+    if (item.itemName.toLowerCase().includes('samsung')) {
+        imgName='itemId-samsung';
+    }
+    return (
+      <div  key={`${item}${i}`}>
+        <Image
+            className="object-cover bg-slate-400"
+            src={`/src/${imgName}.jpg`}
+            alt={imgName}
+            width={200}
+            height={200}
+        >
+        </Image>
+        <p>Name: {item.itemName}</p>
+        <p>Price: {item.itemPrice}$</p>
+        <p>Info: {item.itemInfo}</p>
+      </div>
+    )
+  });
   return (
     <>
       <div className="flex flex-col items-center justify-between p-24 h-full">
