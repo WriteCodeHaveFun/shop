@@ -14,30 +14,7 @@ export default function AddToCart({itemId, fullData}) {
     const maxValue = 10;
 
     useEffect(() => {
-        const curItemIdInfo = localStorage.getItem(cartName);
-
-        if (curItemIdInfo) {
-            const obj = JSON.parse(curItemIdInfo);
-
-            if (!obj.hasOwnProperty(itemId)) {
-                obj[itemId] = number;
-                obj.data.push(fullData[0]);
-                localStorage.setItem(cartName, JSON.stringify(obj));
-            } else {
-                obj[itemId] = obj[itemId] + number;
-                localStorage.setItem(cartName, JSON.stringify(obj));
-            }
-        } else {
-            const infoObj = {
-                [itemId]: number,
-                data: fullData
-            };
-
-            // localStorage fix
-            if (typeof window === undefined || typeof localStorage === undefined) return;
-            localStorage.setItem(cartName, JSON.stringify(infoObj))
-        }
-    }, [cartName, numberOfItems, fullData, userEmail, itemId, number]);
+    }, []);
 
     const addValueTOLocalStorage = () => {
         // localStorage fix
