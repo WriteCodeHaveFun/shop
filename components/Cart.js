@@ -2,7 +2,7 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import RemoveFromCart from "./RemoveFromCart";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,9 +13,12 @@ export default function Cart() {
     const { data: session } = useSession()
     const userEmail = session?.user?.email;
     const cartName = userEmail ? userEmail + '\'s-cart' : 'cart';
-    const [cartData, setCartData] = useState(
-        typeof window !== undefined ? JSON.parse(localStorage.getItem(cartName)) : false
-    );
+    const [cartData, setCartData] = useState(false);
+
+    useEffect(() => {
+        if (typeof window === undefined || typeof localStorage === undefined) return;
+        setCartData(JSON.parse(localStorage.getItem(cartName)));
+    }, [cartName])
 
     // const numberOfItems = cartData.number;
     let cart = [];
@@ -58,7 +61,7 @@ export default function Cart() {
 
     function handleToggleClick() {
         setIsOpen(!isOpen);
-        if (window === undefined) return;
+        if (typeof window === undefined || typeof localStorage === undefined) return;
         setCartData(JSON.parse(localStorage.getItem(cartName)));
     }
 
@@ -68,7 +71,7 @@ export default function Cart() {
 
     function handleBuyAllClick() {
         setIsOpen(false);
-        if (window === undefined) return;
+        if (typeof window === undefined || typeof localStorage === undefined) return;
         localStorage.removeItem(cartName);
     }
     return(

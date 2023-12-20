@@ -1,7 +1,7 @@
 'use client';
 
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function AddToCart({itemId, fullData}) {
     const [isClickAvailable, setIsClickAvailable] = useState(true);
@@ -13,10 +13,8 @@ export default function AddToCart({itemId, fullData}) {
     const minValue = 0;
     const maxValue = 10;
 
-
-    const addValueTOLocalStorage = () => {
-        // localStorage fix
-        const curItemIdInfo = typeof window !== undefined ? localStorage.getItem(cartName) : false;
+    useEffect(() => {
+        const curItemIdInfo = localStorage.getItem(cartName);
 
         if (curItemIdInfo) {
             const obj = JSON.parse(curItemIdInfo);
@@ -36,7 +34,35 @@ export default function AddToCart({itemId, fullData}) {
             };
 
             // localStorage fix
-            if (typeof window === undefined) return;
+            if (typeof window === undefined || typeof localStorage === undefined) return;
+            localStorage.setItem(cartName, JSON.stringify(infoObj))
+        }
+    }, [cartName, numberOfItems, fullData, userEmail, itemId, number]);
+
+    const addValueTOLocalStorage = () => {
+        // localStorage fix
+        if (typeof window === undefined || typeof localStorage === undefined) return;
+        const curItemIdInfo = localStorage.getItem(cartName);
+
+        if (curItemIdInfo) {
+            const obj = JSON.parse(curItemIdInfo);
+
+            if (!obj.hasOwnProperty(itemId)) {
+                obj[itemId] = number;
+                obj.data.push(fullData[0]);
+                localStorage.setItem(cartName, JSON.stringify(obj));
+            } else {
+                obj[itemId] = obj[itemId] + number;
+                localStorage.setItem(cartName, JSON.stringify(obj));
+            }
+        } else {
+            const infoObj = {
+                [itemId]: number,
+                data: fullData
+            };
+
+            // localStorage fix
+            if (typeof window === undefined || typeof localStorage === undefined) return;
             localStorage.setItem(cartName, JSON.stringify(infoObj))
         }
     }

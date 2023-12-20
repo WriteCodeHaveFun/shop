@@ -8,7 +8,8 @@ export default function RemoveFromCart({itemId, setCartData}) {
     const cartName = userEmail ? userEmail + '\'s-cart' : 'cart';
 
     function handleClick() {
-        if (window === undefined) return;
+        if (typeof window === undefined || typeof localStorage === undefined) return;
+        
         let cartData = JSON.parse(localStorage.getItem(cartName));
         delete cartData[itemId];
         cartData.data = cartData.data.filter(function(obj) {
