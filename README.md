@@ -45,4 +45,5 @@ To run the e-commerce shop locally, follow these steps:
    Visit http://localhost:3000 in your browser to explore the e-commerce shop locally.
 
 ## Conclusion
+
 My simple e-commerce shop demonstrates the power and flexibility of Next.js, Tailwind CSS, NextAuth.js, and MongoDB. I've focused on creating a seamless shopping experience while ensuring secure user authentication and efficient data management. Feel free to explore the codebase, and if you have any questions or feedback, don't hesitate to reach out. Happy shopping!
