@@ -43,7 +43,7 @@ To run the e-commerce shop locally, follow these steps:
    ```bash
    npm run dev
 
-   Visit http://localhost:3000 in your browser to explore the e-commerce shop locally.
+4. Visit http://localhost:3000 in your browser to explore the e-commerce shop locally.
 
 ## Conclusion
 
