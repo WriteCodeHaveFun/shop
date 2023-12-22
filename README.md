@@ -38,11 +38,11 @@ To run the e-commerce shop locally, follow these steps:
 2. Set up environment variables:
    Create a .env file in the root directory and add the necessary variables for MongoDB and NextAuth.js.
 
-1. Run the development server:
+3. Run the development server:
 
    ```bash
    npm run dev
-   
+
    Visit http://localhost:3000 in your browser to explore the e-commerce shop locally.
 
 ## Conclusion
